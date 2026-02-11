@@ -1,5 +1,9 @@
 resource "aws_vpc" "homework_vpc" {
   cidr_block = "10.0.0.0/24"
+
+  tags = {
+    Name = "Homework VPC"
+  }
 }
 
 resource "aws_subnet" "homework_public_subnet" {
