@@ -1,19 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source = "hashicorp/aws"
-      version = "6.31.0"
-    }
-  }
-
-  required_version = ">=1.2"
-}
-
-provider "aws" {
-  region = "us-west-2"
-  profile = var.profile
-}
-
 resource "aws_vpc" "homework_vpc" {
   cidr_block = "10.0.0.0/24"
 }
@@ -43,4 +27,3 @@ resource "aws_internet_gateway" "homework_ig" {
     Name = "Homework IG"
   }
 }
-
