@@ -49,3 +49,25 @@ resource "aws_route_table_association" "public_rtb_association" {
   subnet_id      = aws_subnet.homework_public_subnet.id
   route_table_id = aws_route_table.homework_public_rtb.id
 }
+
+resource "aws_eip" "nat_gateway_eip" {
+  domain = "vpc"
+
+  tags = {
+    Name = "Homework NAT gw EIP"
+  }
+}
+
+resource "aws_nat_gateway" "homework_nat_gateway" {
+  allocation_id     = aws_eip.nat_gateway_eip.id
+  subnet_id         = aws_subnet.homework_public_subnet.id
+  connectivity_type = "public"
+
+  tags = {
+    Name = "Homework NAT gw"
+  }
+
+  # To ensure proper ordering, it is recommended to add an explicit dependency
+  # on the Internet Gateway for the VPC.
+  depends_on = [aws_internet_gateway.homework_ig]
+}
