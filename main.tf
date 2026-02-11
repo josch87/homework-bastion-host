@@ -37,7 +37,7 @@ resource "aws_subnet" "homework_private_subnet" {
 }
 
 resource "aws_internet_gateway" "homework_ig" {
-  vpc_id = aws_vpc.homework_vpc
+  vpc_id = aws_vpc.homework_vpc.id
 
   tags = {
     Name = "Homework IG"
