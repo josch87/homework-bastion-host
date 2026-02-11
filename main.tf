@@ -27,3 +27,12 @@ resource "aws_subnet" "homework_public_subnet" {
   }
 }
 
+resource "aws_subnet" "homework_private_subnet" {
+  vpc_id     = aws_vpc.homework_vpc.id
+  cidr_block = "10.0.0.16/28"
+
+  tags = {
+    Name = "Homework Private Subnet"
+  }
+}
+
